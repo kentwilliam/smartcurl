@@ -1,0 +1,31 @@
+section#admin
+
+  h1 SmartCurls blog admin
+
+  section.articles
+    ul
+      - @articles.each do |article|
+        li
+        = article
+    form method='post' action='admin/articles/new'
+      input type='submit' value='New article'
+
+  section.editor
+    form method='post' action=''
+      label      for='title' Title
+      input     name='title' type='text'
+      label      for='content' Article content
+      textarea  name='content'
+      label      for='published' Publish date (YYYY-MM-DD)
+      input     name='published' type='text'
+      small (Leave this field empty to hide article from viewers.)
+      input     type='submit' value='Save'
+
+  section.preview
+    h1 Article Preview
+    article
+      h1.title
+      .content
+
+
+script type="text/javascript" src="scripts/lib/Markdown.Converter.js"

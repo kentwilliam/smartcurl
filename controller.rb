@@ -1,0 +1,28 @@
+helpers do
+  def protected!
+    unless authorized?
+      response['WWW-Authenticate'] = %(Basic realm="Restricted Area")
+      throw(:halt, [401, "Not authorized\n"])
+    end
+  end
+  def authorized?
+    @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+    @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == ['yvonne', 'i_love_you']
+  end
+end
+
+get "/" do
+  slim :index
+end
+
+post "/admin/articles/new" do
+  puts "ADding article"
+  #redirect "/admin"
+end
+
+get "/admin" do
+  protected!
+  puts "running admin"
+  @articles = ['article 1', 'article 2']
+  slim :admin
+end
