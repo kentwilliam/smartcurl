@@ -7,7 +7,21 @@ class Article
   property :created,    DateTime
   property :published,  DateTime
   property :modified,   DateTime
+
+  has n, :uploads, :through => Resource
 end
+
+class Upload
+  include DataMapper::Resource
+
+  property :id,         Serial
+  property :filename,   String
+
+  has n, :articles, :through => Resource
+end
+
+
+
 
 # Tags
 # Authors

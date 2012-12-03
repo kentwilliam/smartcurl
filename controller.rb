@@ -60,17 +60,40 @@ post "/admin/articles/:id/update" do
 end
 
 post "/admin/articles/:id/images/upload" do
-  puts Dir.pwd
-  filename = 'public/uploads/' + params['file-0'][:filename]
-  puts "Exists? " + (File.exists? filename).to_s
-  File.open('public/uploads/' + params['file-0'][:filename], "w") do |f|
+  return unless @article
+
+  path = 'public/uploads/'
+  filename = params['file-0'][:filename]
+  basename = File.basename(filename)
+
+  # Extension is everything after last period (.)
+  split_at  = basename.rindex('.')
+  name      = basename[0..split_at-1]
+  extension = basename[split_at+1..basename.length]
+
+  # Only allow image uploads for now
+  return unless ['png','gif','jpg','jpeg'].any?{ |e| e.casecmp(extension) == 0 }
+
+  # If file exists already, create duplicate filename by adding _0 _1 etc.
+  i = 1
+  while File.exists?(path + filename)
+    filename = name + '_' + i.to_s + '.' + extension
+    i += 1
+  end
+
+  # Write file
+  File.open(path + filename, "w") do |f|
     f.write(params['file-0'][:tempfile].read)
   end
-  "Success!"
-  #{}"Uploading!"
-  # Handle POST-request (Receive and save the uploaded file)
-  #pp params
-  # File.open('uploads/' + params['myfile'][:filename], "w") do |f|
-  #   f.write(params['myfile'][:tempfile].read)
-  # end
+
+  # Create link to article
+  upload = Upload.create(
+    :filename => filename
+    )
+  @article.uploads << upload
+  @article.save
+
+  # Return partial for display
+  @image = upload
+  slim :image, :layout => false
 end

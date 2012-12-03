@@ -1,12 +1,15 @@
 $(document).on('ready', setup);
 
+var uploadComplete = function(data) {
+  alert(data);
+}
+
 function setup () {
 
   // Image upload
   $('#faux_upload').click(function() {
     $('#upload').click();
   });
-
   $('#upload').on('change', function (event) {
     var data = new FormData();
     $.each(event.target.files, function(i, file) {
@@ -20,9 +23,7 @@ function setup () {
       contentType: false,
       processData: false,
       type: 'POST',
-      success: function(data){
-        alert(data);
-      }
+      success: uploadComplete
     });
   });
 
