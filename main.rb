@@ -1,14 +1,16 @@
 require 'sinatra'
-
-require 'pp'
-require 'slim'
 require 'dm-core'
 require 'dm-migrations'
+require 'pp'
+require 'slim'
 #require 'logger'
 
-# Model
+# Helpers
+require './helpers/authorization.rb'
+
+# Models
 require './config/database.rb'
 require './models.rb'
 
-# Controller
+# Main controller
 require './controller.rb'

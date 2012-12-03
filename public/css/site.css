@@ -1,4 +1,5 @@
-body, ul, ol, li, section, article, header, footer, div, span {
+body, ul, ol, li, section, article, header, footer, div, span,
+h1, h2, h3, h4, h5, h6 {
   display: block;
   margin: 0;
   padding: 0;
@@ -35,7 +36,9 @@ h1, h2, h3, input, textarea {
 }
 
 input[type=submit],
-input[type=button] {
+input[type=button],
+.button {
+  display: inline-block;
   border: 2px solid #EB606D;
   border-radius: 7px;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.6);
@@ -51,7 +54,9 @@ input[type=button] {
   background-image:      -o-linear-gradient(top, #FF7580, #EF5763); /* Opera 11.10-12.00 */
   background-image:         linear-gradient(to bottom, #FF7580, #EF5763); /* Firefox 16+, IE10, Opera 12.50+ */
 }
-  input[type=submit]:hover {
+  input[type=submit]:hover,
+  input[type=button]:hover,
+  .button:hover {
     background: #FF8C95;
     border-color: #FF7580;
     cursor: pointer;
@@ -183,76 +188,3 @@ p {
 }
 
 
-#admin {
-  margin: 0 auto;
-  padding: 24px;
-}
-#admin section {
-  display: inline-block;
-  vertical-align: top;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-}
-#admin .articles {
-  width: 16%;
-  border: 1px solid silver;
-}
-#admin .editor {
-  width: 52%;
-  border: 1px solid silver;
-  min-height: 600px;
-  padding: 20px;
-}
-  #admin .editor input[type=text],
-  #admin .editor textarea {
-    display: block;
-    width: 75%;
-    border: 0;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-    font-size: 18px;
-    margin: 0 0 20px 0;
-    border-radius: 3px;
-    padding: 6px;
-  }
-  #admin .editor textarea {
-    width: 98%;
-    min-height: 500px;
-  }
-  #admin .editor input[type=submit] {
-    width: auto;
-    margin: 20px 0;
-  }
-  #admin .editor label {
-    font-family: RawengulkBold, sans-serif;
-    font-size: 16px;
-    color: rgba(0,0,0,0.5);
-    padding: 0 0 4px;
-    display: block;
-  }
-  #admin .editor small {
-    font-size: 13px;
-    color: rgba(0,0,0,0.5);
-    display: block;
-    margin: -10px 0 10px;
-  }
-#admin .preview {
-  width: 32%;
-  background: rgba(0,0,0,0.15);
-  min-height: 600px;
-  padding: 20px;
-}
-#admin .preview>h1 {
-  margin: 0 0 10px 0;
-  text-align: center;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.5);
-  font-size: 15px;
-}
-#admin .preview article {
-  background: white;
-  border-radius: 3px;
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-  padding: 20px;
-}

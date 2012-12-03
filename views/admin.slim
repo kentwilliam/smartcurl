@@ -1,31 +1,52 @@
+script type="text/javascript" src="/scripts/lib/Markdown.Converter.js"
+
 section#admin
 
-  h1 SmartCurls blog admin
+  h1 
+    | Naturaluscious 
+    span admin
 
   section.articles
-    ul
-      - @articles.each do |article|
-        li
-        = article
-    form method='post' action='admin/articles/new'
+    - @articles.each do |name, articles|
+      - next if articles.empty?
+      h1 = name.to_s
+      ol
+        - articles.each do |article|
+          - title = if article.title.nil? or article.title == '' then @defaults[:article_title] else article.title end
+          li
+            a href='/admin/articles/#{article.id}' class={'selected' if article.id == @article.id}
+              = title
+
+    form method='post' action='/admin/articles/new'
       input type='submit' value='New article'
 
+  - return unless @article
+
   section.editor
-    form method='post' action=''
-      label      for='title' Title
-      input     name='title' type='text'
-      label      for='content' Article content
-      textarea  name='content'
-      label      for='published' Publish date (YYYY-MM-DD)
-      input     name='published' type='text'
-      small (Leave this field empty to hide article from viewers.)
-      input     type='submit' value='Save'
+    
+    form method='post' action='/admin/articles/#{@article.id}/update'
+
+      - title = if @article.title.nil? or @article.title == '' then @defaults[:article_title] else @article.title end
+      label for='title' Title
+      input name='title' type='text' value='#{title}' data-default='#{@defaults[:article_title]}'
+      
+      label for='content' Article content
+      textarea name='content'
+        = @article.content
+      
+      a id='faux_upload' class='button' Upload image &hellip;
+
+      label for='published' Publish date and time
+      input name='published' type='text' value='#{@article.published.strftime("%Y-%m-%d %I:%M %p") if @article.published}'
+      small (Format: 1979-09-06 12:00 pm. Leave this empty to hide article from viewers.)
+      
+      input type='submit' value='Save'
+
+    form style='display: none' action='/admin/articles/#{@article.id}/images/upload'
+      input type='file' name='upload' id='upload'
 
   section.preview
     h1 Article Preview
     article
       h1.title
       .content
-
-
-script type="text/javascript" src="scripts/lib/Markdown.Converter.js"

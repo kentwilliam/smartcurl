@@ -1,0 +1,123 @@
+#admin {
+  margin: 0 auto;
+  padding: 14px;
+}
+
+#admin>h1 {
+  text-transform: uppercase;
+  font-size: 24px;
+  font-family: RawengulkBold, sans-serif;
+  text-align: right;
+  margin-bottom: 10px;
+}
+#admin>h1 span {
+  display: inline;
+  font-family: RawengulkUltralight, sans-serif;
+}
+
+#admin section {
+  display: inline-block;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  height: 80%;
+}
+
+#admin .articles {
+  width: 16%;
+  text-align: center;
+  min-height: 822px;
+}
+  #admin .articles h1 {
+    text-transform: uppercase;
+    font-family: RawengulkBold, sans-serif;
+    font-size: 20px;
+    margin-bottom: 0.2em;
+  }
+  #admin .articles ol {
+    margin-bottom: 1.6em;
+  }
+  #admin .articles a {
+    display: block;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.4);
+    font-family: RawengulkBold, sans-serif;
+    text-decoration: none;
+    color: #444;
+    padding: 3px 6px;
+    margin: 0 0 3px;
+    border: 1px solid rgba(0,0,0,0.1);
+
+  }
+  #admin .articles a.selected {
+    color: white;
+    background: #555;
+  }
+
+
+
+#admin .editor {
+  width: 52%;
+  background: rgba(255,255,255,0.8);
+  min-height: 822px;
+  padding: 20px;
+}
+  #admin .editor input[type=text],
+  #admin .editor textarea {
+    display: block;
+    width: 75%;
+    border: 0;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    font-size: 18px;
+    margin: 0 0 20px 0;
+    border-radius: 3px;
+    padding: 6px;
+  }
+  #admin .editor textarea {
+    width: 98%;
+    min-height: 500px;
+  }
+  #admin .editor input[type=submit] {
+    width: auto;
+    margin: 20px 0;
+  }
+  #admin .editor label {
+    font-family: RawengulkBold, sans-serif;
+    font-size: 16px;
+    color: rgba(0,0,0,0.5);
+    padding: 0 0 4px;
+    display: block;
+  }
+  #admin .editor small {
+    font-size: 13px;
+    color: rgba(0,0,0,0.5);
+    display: block;
+    margin: -10px 0 10px;
+  }
+  #admin #faux_upload {
+    margin-bottom: 1em;
+  }
+
+
+
+#admin .preview {
+  width: 32%;
+  background: rgba(0,0,0,0.15);
+  min-height: 822px;
+  padding: 20px;
+}
+#admin .preview>h1 {
+  margin: 0 0 10px 0;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.5);
+  font-size: 15px;
+}
+#admin .preview article {
+  background: white;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  padding: 20px;
+}
