@@ -14,39 +14,39 @@ section#admin
         - articles.each do |article|
           - title = if article.title.nil? or article.title == '' then @defaults[:article_title] else article.title end
           li
-            a href='/admin/articles/#{article.id}' class={'selected' if article.id == @article.id}
+            a href='/admin/articles/#{article.id}' class={'selected' if @article and article.id == @article.id}
               = title
 
     form method='post' action='/admin/articles/new'
       input type='submit' value='New article'
 
-  - return unless @article
-
-  section.editor
-    
-    form method='post' action='/admin/articles/#{@article.id}/update'
-
-      - title = if @article.title.nil? or @article.title == '' then @defaults[:article_title] else @article.title end
-      label for='title' Title
-      input name='title' type='text' value='#{title}' data-default='#{@defaults[:article_title]}'
+  - if @article
+    section.editor
       
-      label for='content' Article content
-      textarea name='content'
-        = @article.content
-      
-      a id='faux_upload' class='button' Upload image &hellip;
+      form method='post' action='/admin/articles/#{@article.id}/update'
 
-      label for='published' Publish date and time
-      input name='published' type='text' value='#{@article.published.strftime("%Y-%m-%d %I:%M %p") if @article.published}'
-      small (Format: 1979-09-06 12:00 pm. Leave this empty to hide article from viewers.)
-      
-      input type='submit' value='Save'
+        - title = if @article.nil? or @article.title.nil? or @article.title == '' then @defaults[:article_title] else @article.title end
+        label for='title' Title
+        input name='title' type='text' value='#{title}' data-default='#{@defaults[:article_title]}'
+        
+        label for='content' Article content
+        textarea name='content'
+          = @article.content
+        
+        a id='faux_upload' class='button' Upload image &hellip;
 
-    form style='display: none' action='/admin/articles/#{@article.id}/images/upload'
-      input type='file' name='upload' id='upload'
+        label for='published' Publish date and time
+        input name='published' type='text' value='#{@article.published.strftime("%Y-%m-%d %I:%M %p") if @article.published}'
+        small (Format: 1979-09-06 12:00 pm. Leave this empty to hide article from viewers.)
+        
+        input type='submit' value='Save'
 
-  section.preview
-    h1 Article Preview
-    article
-      h1.title
-      .content
+      form style='display: none' action='/admin/articles/#{@article.id}/images/upload'
+        input type='file' name='upload' id='upload'
+
+    section.preview
+      h1 Article Preview
+      article
+        h1.title
+        .content
+
