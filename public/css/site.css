@@ -63,9 +63,9 @@ input[type=button],
   }
 
 #pitch {
-  height: 650px;
+  height: 450px;
   position: relative;
-  background: #858585 url(../images/example.png) center top no-repeat;
+  background: #858585 url(../images/example.png) center -200px no-repeat;
   z-index: 0;
 }
   #pitch header,
@@ -88,9 +88,9 @@ input[type=button],
     text-indent: -9999px;
     background: url(../images/logo.png);
     background-size: 100%;
-    width: 269px;
-    height: 212px;
-    margin: 100px auto 32px;
+    width: 259px;
+    height: 36px;
+    margin: 120px auto 32px;
     display: block;    
   }
   #pitch h2 {
@@ -135,7 +135,8 @@ input[type=button],
       box-shadow: 1px 1px 15px #EB606D, 0 0 5px #EB606D;
     }
 
-#blog {
+#blog,
+#thanks {
   max-width: 1040px;
   margin: 2em auto;
   position: relative;
@@ -172,19 +173,27 @@ input[type=button],
 #blog article:nth-child(3n) {
   margin-right: 0;
 }*/
-article h1 {
-  margin-top: 0;
-  font-size: 25px;
+article.post h1, 
+article.post .date {
+  margin: 0.2em 0 0.5em;
+  text-align: center;
 }
-article .date {
-  font-size: smaller;
+article.post h1 {
+  font-size: 26px;
+}
+article.post .date {
+  font-size: 17px;
   color: rgba(0,0,0,0.4);
   text-transform: uppercase;
   font-family: RawengulkBold, sans-serif;
 }
-p {
+article.post p {
+  font-size: 17px;
   font-family: Baskerville, Georgia, serif;
   color: #444; 
+}
+article.post img {
+  max-width: 100%;
 }
 
 

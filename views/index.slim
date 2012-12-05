@@ -5,28 +5,19 @@
       h2 
         | Natural Luxury.
         span Delivered Monthly.
-      form method="post" action="signup"
+      form method="post" action="/signup"
         input type="text" name="email" value="your_name@email.com"
         input type="submit" value="Sign Me Up!"
 
 #blog
-  article
-    h1 Product Review: CurlyBox
-    .date November 25th 2010
-    p Yadda yadda yadda, yadda yadda
-
-  article
-    h1 Product Review: CurlyBox
-    .date November 25th 2010
-    p Yadda yadda yadda, yadda yadda
-
-  article
-    h1 Product Review: CurlyBox
-    .date November 25th 2010
-    p Yadda yadda yadda, yadda yadda
+  - @articles.each do |article|
+    article.post
+      h1 =article.title
+      .date =article.published.strftime("%A %B %e, %l:%M %P")
+      == article.content_markup
 
   aside.sidebar
     article
-      h1 Product Review: CurlyBox
-      .date November 25th 2010
-      p Yadda yadda yadda, yadda yadda
+      h1 Welcome to Naturaluscious!
+      p We believe in you!
+      p This is what we are all about:

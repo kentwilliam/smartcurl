@@ -1,9 +1,23 @@
 # SITE
 
 get "/" do
+  @articles = Article.all(:published.lt => DateTime.now, :order => [ :published.desc ])
   slim :index
 end
 
+post "/signup" do
+
+  # Does the email make sense?
+  redirect "/" unless params[:email]
+  redirect "/" unless params[:email].match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/)
+
+  user = User.create(
+    :email => params[:email]
+  )
+
+  slim :thanks, :locals => {email:user.email}
+
+end
 
 # ADMIN
 
@@ -24,7 +38,7 @@ before '/admin*' do
 end
 
 before "/admin/articles/:id*" do
-  puts "Getting article with id #{params[:id]}"
+  #puts "Getting article with id #{params[:id]}"
   @article = Article.get(params[:id])
 end
 
@@ -52,6 +66,7 @@ post "/admin/articles/:id/update" do
   @article.update(
     :title => params[:title],
     :content => params[:content],
+    :content_markup => BlueCloth.new(params[:content]).to_html,
     :published => published,
     :modified => DateTime.now
     )
@@ -72,7 +87,10 @@ post "/admin/articles/:id/images/upload" do
   extension = basename[split_at+1..basename.length]
 
   # Only allow image uploads for now
-  return unless ['png','gif','jpg','jpeg'].any?{ |e| e.casecmp(extension) == 0 }
+  return '' unless ['png','gif','jpg','jpeg'].any?{ |e| e.casecmp(extension) == 0 }
+
+  # Clean up image name
+  name = name.downcase.gsub(/\s+/, '-').gsub(/[^a-zA-Z0-9\-_]/,'')
 
   # If file exists already, create duplicate filename by adding _0 _1 etc.
   i = 1
@@ -94,6 +112,5 @@ post "/admin/articles/:id/images/upload" do
   @article.save
 
   # Return partial for display
-  @image = upload
-  slim :image, :layout => false
+  slim :image, :layout => false, :locals => {image:upload}
 end

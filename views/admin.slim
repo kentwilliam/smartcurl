@@ -1,4 +1,5 @@
 script type="text/javascript" src="/scripts/lib/Markdown.Converter.js"
+script src="/scripts/admin.js"
 
 section#admin
 
@@ -33,6 +34,11 @@ section#admin
         textarea name='content'
           = @article.content
         
+        - if @article.uploads.any?
+          #images
+            - @article.uploads.each do |image|
+              == slim :image, :layout => false, :locals => {image:image}
+
         a id='faux_upload' class='button' Upload image &hellip;
 
         label for='published' Publish date and time
@@ -46,7 +52,7 @@ section#admin
 
     section.preview
       h1 Article Preview
-      article
+      article.post
         h1.title
         .content
 

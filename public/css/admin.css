@@ -59,7 +59,7 @@
 
 
 #admin .editor {
-  width: 52%;
+  width: 42%;
   background: rgba(255,255,255,0.8);
   min-height: 822px;
   padding: 20px;
@@ -100,10 +100,30 @@
     margin-bottom: 1em;
   }
 
+  #admin #images {
+    padding-bottom: 15px;
+  }
+  #admin #images li {
+    display: inline-block;
+    margin: 0 20px 10px 0;
+    font-size: 14px;
+    font-family: sans-serif;
+    vertical-align: top;
+  }
+  #admin #images img {
+    max-width: 160px;
+    box-shadow: 0 1px 5px gray;
+  }
+  #admin #images span {
+    display: block;
+    max-width: 160px;
+    text-align: center;
+  }
+
 
 
 #admin .preview {
-  width: 32%;
+  width: 42%;
   background: rgba(0,0,0,0.15);
   min-height: 822px;
   padding: 20px;
@@ -120,4 +140,9 @@
   border-radius: 3px;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
   padding: 20px;
+}
+
+
+#thanks {
+  text-align: center;
 }

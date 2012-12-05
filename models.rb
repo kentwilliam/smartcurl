@@ -4,6 +4,7 @@ class Article
   property :id,         Serial
   property :title,      String
   property :content,    Text
+  property :content_markup, Text
   property :created,    DateTime
   property :published,  DateTime
   property :modified,   DateTime
@@ -18,6 +19,13 @@ class Upload
   property :filename,   String
 
   has n, :articles, :through => Resource
+end
+
+class User
+  include DataMapper::Resource
+
+  property :id,         Serial
+  property :email,      String
 end
 
 
