@@ -15,6 +15,13 @@ body {
   background: #f1eeeb;
 }
 
+a {
+  color: #B73943;
+}
+a:hover {
+  color: #EC4A57;
+}
+
 #container {
   position: absolute;
   top: 0;
@@ -63,7 +70,7 @@ input[type=button],
   }
 
 #pitch {
-  height: 450px;
+  height: 520px;
   position: relative;
   background: #858585 url(../images/example.png) center -200px no-repeat;
   z-index: 0;
@@ -90,20 +97,20 @@ input[type=button],
     background-size: 100%;
     width: 259px;
     height: 36px;
-    margin: 120px auto 32px;
+    margin: 80px auto 32px;
     display: block;    
   }
   #pitch h2 {
     text-transform: uppercase;
     color: white;
     font-family: RawengulkUltralight, sans-serif;
-    font-size: 24.5px;
+    font-size: 23px;
     opacity: 0.9;
     margin-bottom: 32px;
   }
     #pitch h2 span {
       font-family: RawengulkBold, sans-serif;
-      font-size: 20.5px;
+      /*font-size: 20.5px;*/
     }
 
   #pitch input {
