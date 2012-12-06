@@ -182,15 +182,30 @@ article.post h1 {
   font-size: 26px;
 }
 article.post .date {
-  font-size: 17px;
+  font-size: 19px;
+  line-height: 160%;
   color: rgba(0,0,0,0.4);
   text-transform: uppercase;
   font-family: RawengulkBold, sans-serif;
 }
-article.post p {
+article.post p,
+article.post li {
   font-size: 17px;
   font-family: Baskerville, Georgia, serif;
   color: #444; 
+}
+article.post ol,
+article.post ul {
+  margin: 1em 0 1em 2em;
+}
+article.post li {
+  display: list-item;
+}
+article.post ul li {
+  list-style-type: disc;
+}
+article.post ol li {
+  list-style-type: decimal;
 }
 article.post img {
   max-width: 100%;
