@@ -48,6 +48,7 @@ get "/admin*" do
 end
 
 # POSTs
+# create new article
 post "/admin/articles/new" do
   now = DateTime.now
   article = Article.create(
@@ -59,6 +60,7 @@ post "/admin/articles/new" do
   redirect "/admin/articles/#{article.id}"
 end
 
+# update article data
 post "/admin/articles/:id/update" do
   return unless @article
 
@@ -74,10 +76,13 @@ post "/admin/articles/:id/update" do
   redirect "/admin/articles/#{@article.id}"
 end
 
+# image upload
 post "/admin/articles/:id/images/upload" do
   return unless @article
 
   path = 'public/uploads/'
+	Dir.mkdir(path) unless File.exists?(path)
+
   filename = params['file-0'][:filename]
   basename = File.basename(filename)
 
@@ -92,7 +97,9 @@ post "/admin/articles/:id/images/upload" do
   # Clean up image name
   name = name.downcase.gsub(/\s+/, '-').gsub(/[^a-zA-Z0-9\-_]/,'')
 
-  # If file exists already, create duplicate filename by adding _0 _1 etc.
+  filename = name + '.' + extension
+  
+	# If file exists already, create duplicate filename by adding _0 _1 etc.
   i = 1
   while File.exists?(path + filename)
     filename = name + '_' + i.to_s + '.' + extension
