@@ -13,9 +13,13 @@
 #blog
   - @articles.each do |article|
     article.post
-      h1 =article.title
-      .date =article.published.strftime("%A %B %e, %l:%M %P")
-      == article.content_markup
+      a href="#{article.url}"
+        h1 =article.title
+        .date =article.published.strftime("%A %B %e, %l:%M %P")
+      .content
+        == article.content_markup
+      a href="#{article.url}" class="more"
+        | Comments &raquo;
 
   aside.sidebar
     article

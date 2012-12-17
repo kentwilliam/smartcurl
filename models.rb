@@ -10,6 +10,13 @@ class Article
   property :modified,   DateTime
 
   has n, :uploads, :through => Resource
+
+  def url
+    "/articles/#{self.id}-" + self.title.downcase.gsub(/[^a-z0-9\-\_]/, '_')
+  end
+  def disqus_id
+    "/articles/#{self.id}"
+  end
 end
 
 class Upload

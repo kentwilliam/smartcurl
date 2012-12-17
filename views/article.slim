@@ -1,0 +1,24 @@
+#blog
+  article.post
+    h1 =article.title
+    .date =article.published.strftime("%A %B %e, %l:%M %P")
+    == article.content_markup
+    #disqus_thread
+    javascript:
+      var disqus_developer = 1;
+      var disqus_identifier = "#{article.disqus_id}";
+      var disqus_url = "#{article.disqus_id}";
+      var disqus_shortname = 'naturaluscious'; // required: replace example with your forum shortname
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://naturaluscious.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+
+  aside.sidebar
+    article
+      h1 Welcome to Naturaluscious!
+      p Contact info:
+        <a href="mailto:info@naturaluscious.com">info@naturaluscious.com</a>
+      p
+      div class="fb-like-box" data-href="http://www.facebook.com/naturaluscious" data-width="293" data-show-faces="false" data-stream="false" data-border-color="white" data-header="true"

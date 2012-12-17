@@ -5,6 +5,20 @@ get "/" do
   slim :index
 end
 
+get "/articles/:id/?" do
+
+  # Basic input validation: Something like /articles/123-title_here
+  matches = /^([0-9]+)\-[a-z0-9\-\_]+$/.match(params[:id]) or halt(404)
+  id = matches[1].to_i
+  article = Article.get(id) or halt(404)
+  
+  # There is only one canonical URL for each article, redirect anything else
+  redirect article.url, 301 unless article.url == request.env['REQUEST_PATH']
+
+  slim :article, :locals => {article:article}
+
+end
+
 post "/signup" do
 
   # Does the email make sense?
